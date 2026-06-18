@@ -35,10 +35,10 @@ jobs:
       - docker/check
       - docker/build: #builds the image, similar to docker build -t "name:tag" .
           image: mohamedelshamy2/node
-          tag: v1.0.0
+          tag: v1.0.1
       - docker/push: #pushes the image to specified account in the environment variables
           image: mohamedelshamy2/node
-          tag: v1.0.0
+          tag: v1.0.1
 
 
 # workflow
