@@ -40,6 +40,17 @@ jobs:
           image: mohamedelshamy2/node
           tag: v1.0.1
 
+ # Deploy job
+  deploy:
+      docker:
+        - image: cimg/node:16.10
+      steps:
+        - setup_remote_docker
+        - checkout
+        - run: 
+            name: Render Push
+            command: |
+              curl https://api.render.com/deploy/srv-d8slocbtqb8s73fl5sd0?key=d3jPAoHIgoo
 
 # workflow
 workflows:
@@ -53,3 +64,6 @@ workflows:
       - publish:
           requires:
             - test
+      - deploy:
+          requires:
+            - publish
