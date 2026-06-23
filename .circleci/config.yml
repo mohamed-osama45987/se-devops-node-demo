@@ -68,6 +68,20 @@ jobs:
                 severity-threshold: high
                 fail-on-issues: false 
 
+  codescan:
+    docker:
+      - image: cimg/node:16.10
+    environment:
+      IMAGE_NAME: mohamedelshamy2/node
+    steps:
+      - checkout
+      - setup_remote_docker
+      - docker/check
+      - run: docker build -t $IMAGE_NAME .
+      - snyk/install
+      - run: |
+          snyk code test              
+
 # workflow
 workflows:
   # Name of the workflow is simple_workflow
@@ -84,6 +98,12 @@ workflows:
       #     requires:
       #       - test
       - scan:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+      - codescan:
           requires:
             - build
           filters:
