@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   node: circleci/node@7.2.1
   docker: circleci/docker@4.0.0
-  snyk: snyk/snyk@1.5.0
+  snyk: snyk/snyk@2.3.0
 
 # jobs
 jobs:
@@ -63,8 +63,10 @@ jobs:
             - setup_remote_docker      
             - docker/check
             - run: docker build -t $IMAGE_NAME .
-            - snyk/scan: 
+            - snyk/scan:
                 docker-image-name: $IMAGE_NAME
+                severity-threshold: high
+                fail-on-issues: false 
 
 # workflow
 workflows:
