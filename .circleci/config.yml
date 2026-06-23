@@ -2,8 +2,8 @@ version: 2.1
 
 # orbs
 orbs:
-  node: circleci/node@5.0.1
-  docker: circleci/docker@2.8.2
+  node: circleci/node@7.2.1
+  docker: circleci/docker@4.0.0
   snyk: snyk/snyk@1.5.0
 
 # jobs
